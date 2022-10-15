@@ -1,0 +1,17 @@
+#split age into groups
+df= df %>% 
+  mutate(
+    # Create categories
+    age_group = dplyr::case_when(
+      age <= 1            ~ "0-1 infant",
+      age > 1 & age <= 4 ~ "2-4 toddler",
+      age > 4 & age <= 12 ~ "5-12 child",
+      age > 12 & age <= 19 ~ "13-19 teen",
+      age > 19 & age <= 39 ~ "20-39 adult",
+      age > 39 & age <= 59 ~ "40-59 middle age adult",
+      age > 59             ~ "> 60 senior adult"
+    ))
+    
+#remove commas
+df$age=as.numeric(gsub(",", ".", gsub("\\.", "", df$age)))
+
