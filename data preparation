@@ -1,0 +1,10 @@
+# to see how many missing values are in each variable
+sapply(df, function(x) sum(is.na(x)))
+
+# to check if they are many factors; if so, the variable only serves for indexing
+# indexing variables should be removed in model training
+sapply(df, function(x) length(unique(x)))
+
+# the testing factor should be a "factor" in random forest
+df$x=as.factor(df$x)
+
